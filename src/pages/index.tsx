@@ -18,7 +18,7 @@ export default function Home({trending}: HomeProps): JSX.Element {
     </Head>
     <Header/>
     <Row/>
-    <main>{
+    <main className='relative pl-4 pb-4 lg:space-y-24 lg:pl-16'>{
       <Hero trending={trending}/>
   }
     <section>
