@@ -1,8 +1,13 @@
 import Head from 'next/head'
-import { Header, Row } from '@/components'
+import { Header, Hero, Row } from '@/components'
+import { GetServerSideProps } from 'next'
+import { API_REQUEST } from '@/services/api.service'
+import { IMovie } from '@/interfaces/app.interface';
+import { maxHeaderSize } from 'http';
 
 
-export default function Home() {
+export default function Home({trending}: HomeProps): JSX.Element {
+
   return (
     <div className='relative h-[200vh]'>
     <Head>
@@ -14,7 +19,8 @@ export default function Home() {
     <Header/>
     <Row/>
     <main>{
-    /* Hero */}
+      <Hero trending={trending}/>
+  }
     <section>
       {/* row */}
       {/* BigRow */}
@@ -24,4 +30,16 @@ export default function Home() {
     </main>
     </div>
   )
+}
+export const getServerSideProps: GetServerSideProps<HomeProps> = async() => {
+  const trending =  await fetch(API_REQUEST.trending).then (res => res.json())
+
+  return {
+    props:{
+      trending: trending.results,
+    }
+  }
+}
+interface HomeProps {
+  trending: IMovie[];
 }
