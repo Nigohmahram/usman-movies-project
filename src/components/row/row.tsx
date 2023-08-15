@@ -1,9 +1,5 @@
-import React from 'react'
-
 const Row = () => {
-  return (
-    <div></div>
-  )
-}
+	return <div>Row</div>;
+};
 
-export default Row
+export default Row;

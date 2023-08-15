@@ -1,5 +1,5 @@
-import { IMovie } from "@/interfaces/app.interface";
+import { IMovie } from 'src/interfaces/app.interface';
 
-export interface HomeProps {
-      trending: IMovie[];
+export interface HeroProps {
+	trending: IMovie[];
 }

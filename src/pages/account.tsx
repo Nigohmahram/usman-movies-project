@@ -1,19 +1,17 @@
-import Head from "next/head"
+import Head from 'next/head';
 
 const Account = () => {
-  return (
-      <>
-      <Head>
-      <title>Account</title>
-      <meta name='description' content='For using our application you should sign to application' />
-      <meta name='viewport' content='width=device-width, initial-scale=1'/>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <div>
-      Account
-    </div>
-      </>
-  )
-}
+	return (
+		<>
+			<Head>
+				<title>Your account</title>
+				<meta name='description' content='Configure your account' />
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<link rel='icon' href='/favicon.ico' />
+			</Head>
+			<div>Account</div>
+		</>
+	);
+};
 
-export default Account
+export default Account;
