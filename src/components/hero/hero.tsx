@@ -31,7 +31,7 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 
 			<div className='flex items-center space-x-2 mt-10'>
 				<ReactStars edit={false} count={10} value={movie.vote_average} size={25}/>
-				<p>({movie.vote_count})</p>
+				<p className='font-bold'>({movie.vote_count})</p>
 			</div>
 			<h1 className='text-2xl font-bold md:text-4xl lg:text-7xl'>{movie?.title || movie?.name || movie?.original_name}</h1>
 			<p className=' md:max-w-lg lg:max-w-2xl text-xs text-shadow-md md:text-lg lg:text-2xl font-bold'>
