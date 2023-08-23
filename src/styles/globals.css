@@ -27,5 +27,8 @@ h1{
 text-shadow: 0 2px black;
 }
 .input{
-      @apply w-full rounded bg-[#333] px-5 py-4 placeholder-[gray] outline-none focus:bg-[#454545]
+      @apply w-full rounded bg-[#333] px-5 py-4 placeholder-[gray] outline-none focus:bg-[#454545] active:bg-[#333]
+}
+input.input{
+      background-color: #333;
 }

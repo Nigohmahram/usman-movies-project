@@ -1,6 +1,10 @@
+import { TextField } from '@/components';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
+import {Formik, Form} from 'formik'
+import * as Yup from 'yup'
+
 
 
 const Auth = () => {
@@ -12,14 +16,25 @@ const Auth = () => {
 		setAuth(state);
 	}
 
+	const onSubmit = (FormData: {email: string; password: string}) => {
+		console.log(FormData);
+
+	}
+	const validation = Yup.object({
+		email: Yup.string().email('Enter valid email').required('Email is required'),
+		password: Yup.string().min(4, '4 minimum character').required('Password is required')
+	})
 	return (
-		<>
+		<div className='relative flex h-screen w-screen flex-col md:items-center md:justify-center bg-black md:bg-transparent'>
 			<Head>
 				<title>Auth</title>
 				<meta name='description' content='For watching movies you should sign to app' />
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+
+			<Image src={'https://rb.gy/p2hphi'} alt='bg' fill className='object-cover -z-10 !hidden sm:!inline opacity-70'/>
+
 			<Image
 			src={'/logo.svg'}
 			alt={'logo'}
@@ -27,28 +42,31 @@ const Auth = () => {
 			height={80}
 			className={'absolute left-4 top-4 cursor-pointer object-contain'} />
 
-			<form className='relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:mx-14'>
+			<div className='relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-14 w-[550px]'>
 				<h1 className='text-4xl font-semibold'>{auth === 'signup' ? 'Sign Up' : 'Sign In'}</h1>
+
+				<Formik initialValues={{email: '', password: ''}} onSubmit={onSubmit} validationSchema={validation}>
+					<form action="">
 				<div className='space-y-4'>
-					<label className='inline-block w-full'>
-						<input type="text" placeholder='Email' className='input' />
-					</label>
-					<label className='inline-block w-full'>
-						<input type="password" placeholder='Password' className='input' />
-					</label>
+
+					<TextField name='email' placeholder='Email' type={'text'}/>
+					<TextField name='password' placeholder='Password' type={'password'}/>
 				</div>
 
 				{auth === 'signin' ? (
 				<button type='submit'
-				className='w-full bg-[#e10856] py-3 font-semibold'>
+				className='w-full bg-[#e10856] py-3 mt-4 font-semibold'>
 					Sign In
 					</button>
 				) : (
 					<button type='submit'
-				className='w-full bg-[#e10856] py-3 font-semibold'>
+				className='w-full bg-[#e10856] py-3 mt-4 font-semibold'>
 					Sign Up
 					</button>
 				)}
+					</form>
+				</Formik>
+
 
 					{auth == 'signin' ? (
 					<div className='text-[gray]'>
@@ -63,8 +81,8 @@ const Auth = () => {
 							Sign In</button>
 					</div>
 					)}
-			</form>
-		</>
+			</div>
+		</div>
 	);
 };
 
