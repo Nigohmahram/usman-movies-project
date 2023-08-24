@@ -17,9 +17,9 @@ const Auth = () => {
 	const router = useRouter();
 
 
-	if(user) router.push('/');
-	if(!IsLoading) return
+	if(IsLoading) return
 	<>Loading....</>;
+	if(user) router.push('/');
 
 	const toggleAuth = (state: 'signup' | 'signin') => {
 		setAuth(state);
