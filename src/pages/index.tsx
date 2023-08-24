@@ -1,4 +1,5 @@
 import { AuthContext } from '@/context/auth.context';
+import { useInfoStore } from '@/store';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useContext } from 'react';
@@ -7,10 +8,13 @@ import { IMovie } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
 export default function Home({ trending, topRated, trading, popular, popula, providers, documentary, family}: HomeProps): JSX.Element {
+	const {setModal, modal} = useInfoStore();
 
 	const {IsLoading} = useContext(AuthContext);
 
 	if(IsLoading) return <>{null}</>;
+	console.log(modal);
+
 
 	return (
 		<div className='relative min-h-screen'>
@@ -33,6 +37,7 @@ export default function Home({ trending, topRated, trading, popular, popula, pro
 					<Row title='Family' movies={family.reverse()}/>
 				</section>
 			</main>
+
 		</div>
 	);
 }
