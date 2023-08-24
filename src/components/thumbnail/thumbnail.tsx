@@ -2,10 +2,19 @@ import Image from "next/image"
 import { ThumbnailProps } from "./thumbnail.props"
 import { image_base } from "src/components/helpers/constants"
 import ReactStars from "react-stars"
+import { useInfoStore } from "@/store"
 
 const Thumbnail = ({movie, isBig = false}: ThumbnailProps) => {
+  const { setModal, setCurrentMovie } = useInfoStore();
+
+  const handleCurrentMovie = () => {
+    setModal(true);
+    setCurrentMovie(movie);
+  };
   return (
-    <div className={`relative
+    <div
+    onClick={handleCurrentMovie}
+    className={`relative
     ${isBig ? 'h-[450px] md:h-[450px] min-w[350px] md:min-w-[500px] pb-[50px]' : 'h-[330px] md:h-[270px] min-w-[100px] md:min-w-[380px]' }
      cursor-pointer transition duration-500 ease-out  md:hover:scale-110`}>
       <Image

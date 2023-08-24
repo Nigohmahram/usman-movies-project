@@ -22,6 +22,10 @@
             letter-spacing: 2px;
             font-weight: bold;
       }
+
+      .modalButton{
+            @apply flex items-center justify-center rounded-full hover:bg-[#181818]/60  transition-all;
+      }
 }
 h1{
 text-shadow: 0 2px black;
@@ -31,7 +35,4 @@ text-shadow: 0 2px black;
 }
 input.input{
       background-color: #333;
-}
-.h2{
-      margin-top: 10px;
 }

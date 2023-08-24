@@ -3,7 +3,7 @@ import { useInfoStore } from '@/store';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useContext } from 'react';
-import { Header, Hero, Row } from 'src/components';
+import { Header, Hero, Modal, Row } from 'src/components';
 import { IMovie } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
@@ -13,7 +13,7 @@ export default function Home({ trending, topRated, trading, popular, popula, pro
 	const {IsLoading} = useContext(AuthContext);
 
 	if(IsLoading) return <>{null}</>;
-	console.log(modal);
+
 
 
 	return (
@@ -37,20 +37,33 @@ export default function Home({ trending, topRated, trading, popular, popula, pro
 					<Row title='Family' movies={family.reverse()}/>
 				</section>
 			</main>
+			{modal && <Modal />}
 
 		</div>
 	);
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-	const trending = await fetch(API_REQUEST.trending).then(res => res.json());
+	const [trending, topRated, trading, popular, popula, providers, documentary, family] = await Promise.all([
+		fetch(API_REQUEST.trending).then(res => res.json()),
+		fetch(API_REQUEST.top_rated).then(res => res.json()),
+		fetch(API_REQUEST.trading).then(res => res.json()),
+		fetch(API_REQUEST.popular).then(res => res.json()),
+		fetch(API_REQUEST.popula).then(res => res.json()),
+		fetch(API_REQUEST.providers).then(res => res.json()),
+		fetch(API_REQUEST.documentary).then(res => res.json()),
+		fetch(API_REQUEST.family).then(res => res.json())
+	]);
+
+
+/* 	const trending = await fetch(API_REQUEST.trending).then(res => res.json());
 	const topRated = await fetch(API_REQUEST.top_rated).then(res => res.json());
 	const trading = await fetch(API_REQUEST.trading).then(res => res.json());
 	const popular = await fetch(API_REQUEST.popular).then(res => res.json());
 	const popula = await fetch(API_REQUEST.popula).then(res => res.json());
 	const providers = await fetch(API_REQUEST.providers).then(res => res.json());
 	const documentary = await fetch(API_REQUEST.documentary).then(res => res.json());
-	const family = await fetch(API_REQUEST.family).then(res => res.json());
+	const family = await fetch(API_REQUEST.family).then(res => res.json()); */
 
 	return {
 		props: {
