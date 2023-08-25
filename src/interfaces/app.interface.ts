@@ -18,5 +18,18 @@ export interface IMovie {
 	original_name: string;
 }
 export interface Element {
-	type: 'Trailer' | 'Clip' | 'Opening Credits' | 'Behind the Scenes'
+	type: 'Trailer' | 'Clip' | 'Opening Credits' | 'Behind the Scenes';
+}
+
+export interface Product{
+	default_price:{
+		id: string;
+		unit_amount: number;
+	};
+	id: string;
+	images: string[];
+	metadata:{
+		adv: string;
+	};
+	name: string;
 }

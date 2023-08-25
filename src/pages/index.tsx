@@ -4,17 +4,18 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useContext } from 'react';
 import { Header, Hero, Modal, Row, SubscriptionPlan } from 'src/components';
-import { IMovie } from 'src/interfaces/app.interface';
+import { IMovie, Product } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
-export default function Home({ trending, topRated, trading, popular, popula, providers, documentary, family}: HomeProps): JSX.Element {
+export default function Home({ trending, topRated, trading, popular, popula, providers, documentary, family, products}: HomeProps): JSX.Element {
 	const {setModal, modal} = useInfoStore();
 	const {IsLoading} = useContext(AuthContext);
 	const subscription = false;
 
+
 	if(IsLoading) return <>{null}</>;
 
-	if(!subscription) return <SubscriptionPlan/>
+	if(!subscription) return <SubscriptionPlan products={products}/>
 
 	return (
 		<div className='relative min-h-screen'>
@@ -44,7 +45,7 @@ export default function Home({ trending, topRated, trading, popular, popula, pro
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-	const [trending, topRated, trading, popular, popula, providers, documentary, family] = await Promise.all([
+	const [trending, topRated, trading, popular, popula, providers, documentary, family, products] = await Promise.all([
 		fetch(API_REQUEST.trending).then(res => res.json()),
 		fetch(API_REQUEST.top_rated).then(res => res.json()),
 		fetch(API_REQUEST.trading).then(res => res.json()),
@@ -52,7 +53,8 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 		fetch(API_REQUEST.popula).then(res => res.json()),
 		fetch(API_REQUEST.providers).then(res => res.json()),
 		fetch(API_REQUEST.documentary).then(res => res.json()),
-		fetch(API_REQUEST.family).then(res => res.json())
+		fetch(API_REQUEST.family).then(res => res.json()),
+		fetch(API_REQUEST.products_list).then(res => res.json())
 	]);
 
 
@@ -75,6 +77,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 			providers: providers.results,
 			documentary: documentary.results,
 			family: family.results,
+			products: products.products.data,
 		},
 	};
 };
@@ -88,4 +91,5 @@ interface HomeProps {
 	providers: IMovie[];
 	documentary: IMovie[];
 	family: IMovie[];
+	products: Product[];
 }
