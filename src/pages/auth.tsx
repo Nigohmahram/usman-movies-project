@@ -1,11 +1,11 @@
 import { TextField } from '@/components';
 import Head from 'next/head';
 import Image from 'next/image';
-import {useContext, useState } from 'react';
+import {useState } from 'react';
 import {Formik, Form} from 'formik'
 import * as Yup from 'yup'
-import { AuthContext } from '@/context/auth.context';
 import { useRouter } from 'next/router';
+import { useAuth } from '@/hooks/useAuth';
 
 
 
@@ -13,7 +13,7 @@ const Auth = () => {
 
 	const [auth, setAuth] = useState<'signup' | 'signin'>('signin');
 
-	const{error, IsLoading, signIn, signUp, user} = useContext(AuthContext);
+	const{error, IsLoading, signIn, signUp, user, setIsLoading} = useAuth();
 	const router = useRouter();
 
 
@@ -25,14 +25,22 @@ const Auth = () => {
 		setAuth(state);
 	}
 
-	const onSubmit = (formData: {email: string; password: string}) => {
+	const onSubmit = async (formData: {email: string; password: string}) => {
 		if(auth === 'signup') {
+			setIsLoading(true)
+			const response = await fetch ('/api/customer', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email: formData.email}),
+			});
+			await response.json();
 			signUp(formData.email, formData.password)
 		}else{
+
 			signIn(formData.email, formData.password)
 		}
 
-	}
+	};
 	const validation = Yup.object({
 		email: Yup.string().email('Enter valid email').required('Email is required'),
 		password: Yup.string().min(6, '6 minimum character').required('Password is required')
