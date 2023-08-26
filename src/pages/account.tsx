@@ -8,9 +8,13 @@ import { MembershipPlan } from 'src/components/';
 import { GetServerSideProps } from 'next';
 import { Subscription } from '@/interfaces/app.interface';
 import moment from 'moment'
+import { PiShootingStar } from 'react-icons/pi';
+import { BsCalendar2Plus } from 'react-icons/bs';
+import { useAuth } from '@/hooks/useAuth';
+
 
 const Account = ( { subscription }: AccountProps ) => {
-	console.log(subscription);
+	const { logout } = useAuth()
 
 	return (
 		<>
@@ -49,13 +53,13 @@ const Account = ( { subscription }: AccountProps ) => {
 
 				<div className='mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:bordder-x-0 md:border-t md:border-b-0 md:pb-0'>
 					<h4 className='text-lg text-[gray]'>Plan Details</h4>
-					<div className='col-span-2 font-medium'>{subscription.plan.nickname}</div>
+					<div className='col-span-2 flex items-center font-medium'>{subscription.plan.nickname} <PiShootingStar className='text-green-600 ml-1 h-7 w-7'/></div>
 					<p className='cursor-pointer text-blue-500 hover:underline md:text-right'>Change Plan</p>
 				</div>
 
 				<div className='mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:bordder-x-0 md:border-t md:border-b-0 md:pb-0'>
 					<h4 className='text-lg text-[gray]'>Settings</h4>
-					<p className='col-span-3 cursor-pointer text-blue-500 hover:underline'>Sign out of all devices</p>
+					<p className='col-span-3 cursor-pointer text-blue-500 hover:underline' onClick={logout}>Sign out of all devices</p>
 				</div>
 			</main>
 		</>
