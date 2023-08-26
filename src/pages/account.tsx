@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoHome } from 'react-icons/io5';
-import { MdOutlineSubscriptions } from 'react-icons/md';
+import { MdOutlineSubscriptions, MdOutlineBrowserUpdated } from 'react-icons/md';
 import { MembershipPlan } from 'src/components/';
 import { GetServerSideProps } from 'next';
 import { Subscription } from '@/interfaces/app.interface';
@@ -41,7 +41,7 @@ const Account = ( { subscription }: AccountProps ) => {
 					<h1 className='text-3xl md:text-4xl'>Account</h1>
 					<div className='-ml-1 flex items-center gap-x-1.5'>
 						<MdOutlineSubscriptions className='w-5 h-5 text-red-500' />
-						<p className='text-md font-semibold text-[#555]'>Member since {moment(subscription.current_period_start * 1000).format('DD, MM, yyyy')}</p>
+						<p className='text-md flex justify-center items-center font-semibold text-[#555]'>Member since {moment(subscription.current_period_start * 1000).format('DD/MM/yyyy')} <MdOutlineBrowserUpdated className='w-8 h-8 pl-1 text-white'/></p>
 					</div>
 				</div>
 
@@ -73,13 +73,22 @@ export const getServerSideProps: GetServerSideProps<AccountProps> = async ({ req
 	}
 	const subscription = await fetch(`${API_REQUEST.subscription}/${user_id}`).then(res => res.json());
 
+	if (!subscription.subscription.data.length) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
 	return {
 		props: {
 			subscription: subscription.subscription.data[0],
-		}
-	}
+		},
+	};
 };
 
-interface AccountProps{
+interface AccountProps {
 	subscription: Subscription;
 }

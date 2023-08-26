@@ -17,18 +17,19 @@ export interface IMovie {
 	name: string;
 	original_name: string;
 }
+
 export interface Element {
 	type: 'Trailer' | 'Clip' | 'Opening Credits' | 'Behind the Scenes';
 }
 
-export interface Product{
-	default_price:{
+export interface Product {
+	default_price: {
 		id: string;
 		unit_amount: number;
 	};
 	id: string;
 	images: string[];
-	metadata:{
+	metadata: {
 		adv: string;
 	};
 	name: string;
@@ -44,12 +45,27 @@ export interface Subscription {
 		nickname: string;
 	};
 	default_payment_method: {
-		brand: string;
-		exp_month: number;
-		exp_year: number;
-		last4: number;
+		card: {
+			brand: string;
+			exp_month: number;
+			exp_year: number;
+			last4: number;
+		};
 	};
 	customer: {
 		email: string;
-	}
+		metadata: {
+			user_id: string;
+		};
+		invoice_settings: {
+			default_payment_method: {
+				card: {
+					brand: string;
+					exp_month: number;
+					exp_year: number;
+					last4: number;
+				};
+			};
+		};
+	};
 }
