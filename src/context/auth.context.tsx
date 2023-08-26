@@ -38,11 +38,11 @@ const value = useMemo(() => ({
         () =>
       onAuthStateChanged(auth, user =>  {
         if (user) {
-                setIsLoading(false)
+                // setIsLoading(false)
                 setUser(user);
         } else {
                 setUser(null);
-                setIsLoading(true)
+                // setIsLoading(true)
                 router.push('/auth')
         }
         setIsLoading(false)
@@ -53,6 +53,6 @@ const value = useMemo(() => ({
       )
 
 
-return <AuthContext.Provider value={value}>{!initialLoader ? children : 'Loading...'}</AuthContext.Provider>
+return <AuthContext.Provider value={value}>{!initialLoader ? children : null}</AuthContext.Provider>
 }
 export default AuthContextProvider

@@ -1,19 +1,31 @@
-import { AuthContext } from '@/context/auth.context';
-import { useInfoStore } from '@/store';
+// import { AuthContext } from 'src/context/auth.context';
+import { useInfoStore } from 'src/store';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { Header, Hero, Modal, Row, SubscriptionPlan } from 'src/components';
 import { IMovie, Product } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
-export default function Home({ trending, topRated, trading, popular, popula, providers, documentary, family, products, subscription,}: HomeProps): JSX.Element {
+export default function Home({
+	trending,
+	topRated,
+	trading,
+	popular,
+	popula,
+	providers,
+	documentary,
+	family,
+	products,
+	subscription,
+}: HomeProps): JSX.Element {
 	const {setModal, modal} = useInfoStore();
-	const {IsLoading} = useContext(AuthContext);
+	// const {IsLoading} = useContext(AuthContext);
+	// const subscription = false;
 
 
 
-	if(IsLoading) return <>{null}</>;
+	// if(IsLoading) return <>{null}</>;
 
 	if(!subscription.length) return <SubscriptionPlan products={products}/>
 
@@ -46,6 +58,11 @@ export default function Home({ trending, topRated, trading, popular, popula, pro
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req }) => {
 	const user_id = req.cookies.user_id;
+	if(!user_id) {
+		return {
+			redirect: {destination: '/auth', permanent: false},
+		};
+	}
 	const [trending, topRated, trading, popular, popula, providers, documentary, family, products, subscription] = await Promise.all([
 		fetch(API_REQUEST.trending).then(res => res.json()),
 		fetch(API_REQUEST.top_rated).then(res => res.json()),
