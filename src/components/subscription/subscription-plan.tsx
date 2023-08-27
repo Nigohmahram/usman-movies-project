@@ -5,9 +5,11 @@ import { RiVipCrown2Line } from 'react-icons/ri'
 import { VscAzureDevops } from 'react-icons/vsc'
 import { SubscriptionPlanProps } from "./subscription-plan-props";
 import PlanCard from "../plan-card/plan-card";
+import { useContext } from "react";
+import { AuthContext } from "@/context/auth.context";
 
 const SubscriptionPlan = ({ products }: SubscriptionPlanProps) => {
-        const {logout} = useAuth();
+        const {logout} = useContext(AuthContext);
 
 	return (
                 <div className='min-h-screen  bg-[#014E56]'>

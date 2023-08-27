@@ -1,11 +1,13 @@
-// import { AuthContext } from 'src/context/auth.context';
-import { useInfoStore } from 'src/store';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-// import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Header, Hero, Modal, Row, SubscriptionPlan } from 'src/components';
-import { IMovie, Product } from 'src/interfaces/app.interface';
+import { AuthContext } from 'src/context/auth.context';
+import { getList } from '@/components/helpers/lists';
+import { IMovie, MyList, Product } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
+import { useInfoStore } from 'src/store';
+import { list } from 'postcss';
 
 export default function Home({
 	trending,
@@ -18,14 +20,13 @@ export default function Home({
 	family,
 	products,
 	subscription,
+	list,
 }: HomeProps): JSX.Element {
-	const {setModal, modal} = useInfoStore();
-	// const {IsLoading} = useContext(AuthContext);
-	// const subscription = false;
+	const { modal} = useInfoStore();
+	console.log(list);
 
 
 
-	// if(IsLoading) return <>{null}</>;
 
 	if(!subscription.length) return <SubscriptionPlan products={products}/>
 
@@ -43,6 +44,7 @@ export default function Home({
 				<section>
 					<Row  title='Movies'  movies={popula}  />
 					<Row  title='TV Show'  movies={trading} /* isBig={true} *//>
+					{list.length ? <Row  title='My List'  movies={list} /> : null}
 					<Row  title='New'  movies={popular} />
 					<Row title='Popular' movies={topRated}/>
 					<Row title='Kids' movies={providers}/>
@@ -63,7 +65,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req })
 			redirect: {destination: '/auth', permanent: false},
 		};
 	}
-	const [trending, topRated, trading, popular, popula, providers, documentary, family, products, subscription] = await Promise.all([
+		const [trending, topRated, trading, popular, popula, providers, documentary, family, products, subscription] = await Promise.all([
 		fetch(API_REQUEST.trending).then(res => res.json()),
 		fetch(API_REQUEST.top_rated).then(res => res.json()),
 		fetch(API_REQUEST.trading).then(res => res.json()),
@@ -75,6 +77,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req })
 		fetch(API_REQUEST.products_list).then(res => res.json()),
 		fetch(`${API_REQUEST.subscription}/${user_id}`).then(res => res.json()),
 	]);
+	const myList: MyList[] = await getList(user_id);
 
 
 /* 	const trending = await fetch(API_REQUEST.trending).then(res => res.json());
@@ -98,6 +101,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req })
 			family: family.results,
 			products: products.products.data,
 			subscription: subscription.subscription.data,
+			list: myList.map(c => c.product),
 		},
 	};
 };
@@ -113,4 +117,5 @@ interface HomeProps {
 	family: IMovie[];
 	products: Product[];
 	subscription: string[];
+	list: IMovie[];
 }

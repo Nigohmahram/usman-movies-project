@@ -69,3 +69,8 @@ export interface Subscription {
 		};
 	};
 }
+
+export interface MyList {
+	user_id: string;
+	product: IMovie;
+}

@@ -1,19 +1,39 @@
 import { useInfoStore } from '@/store';
 import MuiModal from '@mui/material/Modal';
-import { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState } from 'react';
 import {LiaTimesSolid} from 'react-icons/lia';
 import {FaPlay} from 'react-icons/fa';
-import {AiOutlineLike} from 'react-icons/ai';
+import {AiOutlineLike, AiOutlineCloseCircle} from 'react-icons/ai';
 import {FaPause} from 'react-icons/fa';
+import {Dna} from 'react-loader-spinner';
 import {BiPlus, BiSolidVolumeMute, BiSolidVolumeFull} from 'react-icons/bi';
 import ReactPlayer from 'react-player';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '@/firebase';
+import { useAuth } from 'src/hooks/useAuth';
+import { AuthContext } from 'src/context/auth.context';
+import { useRouter } from 'next/router';
+import { Button, IconButton, Snackbar } from '@mui/material';
+
 const Modal = () => {
         const { modal, setModal, currentMovie } = useInfoStore();
         const [trailer, setTrailer] = useState<string>('');
         const [muted, setMuted] = useState<boolean>(true);
         const [playing, setPlaying] = useState<boolean>(true);
-        const Play = 'Play';
-        const Pause = 'Pause';
+        const [isLoading, setIsLoading] = useState<boolean>(false);
+	const { user } = useContext(AuthContext);
+	const router = useRouter();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleCloseS = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
 
 const base_url = process.env.NEXT_PUBLIC_API_DOMAIN as string;
 const api_key = process.env.NEXT_PUBLIC_API_KEY as string;
@@ -33,18 +53,61 @@ const api = `${base_url}/${currentMovie?.media_type === 'tv' ? 'tv' : 'movie'}/$
                                 setTrailer(data?.results[index]?.key);
                         }
                 };
-                console.log(trailer);
 
                 fetchVidioData();
                 //eslint-disable-next-line
         }, [currentMovie]);
+
+        const addProductList = async () => {
+		setIsLoading(true);
+		try {
+			await addDoc(collection(db, 'list'), {
+				userId: user?.uid,
+				product: currentMovie,
+			});
+			setIsLoading(false);
+			router.replace(router.asPath);
+			setOpen(true);
+		} catch (e) {
+			console.error('Error adding document: ', e);
+			setIsLoading(false);
+		}
+	};
+
+
+
+
+        const action = (
+    <>
+      <IconButton
+        aria-label="close"
+        color="inherit"
+        onClick={handleCloseS}
+      >
+        <AiOutlineCloseCircle className='w-7 h-7' />
+      </IconButton>
+    </>
+  );
+
+
 
 
   return <MuiModal
   open={modal}
   onClose={handleClose}
   className={'fixed !top-[-50px] left-0 right-0 z-50 mx-auto w-full max-w-6xl overflow-hidden overflow-y-scroll scrollbar-hide'}>
+
+
         <>
+<Snackbar className='w-[50px] font-bold text-xl '
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleCloseS}
+        message="SUCCESS FULLY ADDED"
+        action={action}
+      />
+
+
         <button onClick={() => setModal(false)} className='modalButton absolute right-[20px] top-[100px] !z-40 h-[60px] w-[60px] border-none bg-[#181818]'>
                 <LiaTimesSolid className='w-9 h-9'/>
         </button>
@@ -74,8 +137,8 @@ const api = `${base_url}/${currentMovie?.media_type === 'tv' ? 'tv' : 'movie'}/$
                                                 </>
                                         )}
                                 </button>
-                                <button className='modalButton'>
-                                        <BiPlus className='w-7 h-7'/>
+                                <button onClick={addProductList} className='modalButton'>
+                                        {isLoading ? <Dna /> : <BiPlus className='w-7 h-7'/>}
                                 </button>
                                 <button className='modalButton'>
                                         <AiOutlineLike className='w-7 h-7'/>
