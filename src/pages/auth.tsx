@@ -48,7 +48,7 @@ const Auth = () => {
 			/>
 
 			<Formik initialValues={{ email: '', password: '' }} onSubmit={onSubmit} validationSchema={validation}>
-				<Form className='relative mt-24 space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-10'>
+				<Form className='relative mt-24 w-[600px] h-[500px]  space-y-8 rounded bg-black/75 py-10 px-6 md:mt-0 md:max-w-md md:px-10'>
 					<h1 className='text-4xl font-semibold'>{auth === 'signup' ? 'Sign up' : 'Sign In'}</h1>
 					{error && <p className='text-red-500 font-semibold text-center'>{error}</p>}
 					<div className='space-y-4'>
@@ -66,6 +66,11 @@ const Auth = () => {
 							<button type='button' className='text-white hover:underline' onClick={() => toggleAuth('signup')}>
 								Sign Up Now
 							</button>
+							<div className='bg-[darkgreen]/30 rounded mt-4 p-1'>
+								<h1 className='text-center pt-2 font-semibold text-white'>로그인 방법</h1>
+							<h1>로그인: usmon@gmail.kr / 12345678</h1>
+							<h1>가입: 아무거나 입력하세요</h1>
+							</div>
 						</div>
 					) : (
 						<div className='text-[gray]'>
