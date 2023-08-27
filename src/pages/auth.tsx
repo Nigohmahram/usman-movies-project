@@ -68,7 +68,7 @@ const Auth = () => {
 							</button>
 							<div className='bg-[darkgreen]/30 rounded mt-4 p-1'>
 								<h1 className='text-center pt-2 font-semibold text-white'>로그인 방법</h1>
-							<h1>로그인: usmon@gmail.kr / 12345678</h1>
+							<h1>로그인: usmondev@gmail.kr / 1234567</h1>
 							<h1>가입: 아무거나 입력하세요</h1>
 							</div>
 						</div>
