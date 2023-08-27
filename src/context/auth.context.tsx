@@ -1,5 +1,4 @@
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/router';
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
 import { auth } from 'src/firebase';
 import { useAuth } from 'src/hooks/useAuth';
@@ -12,6 +11,7 @@ interface AuthContextState {
 	signIn: (email: string, password: string) => Promise<void>;
 	logout: () => Promise<void>;
 }
+
 export const AuthContext = createContext<AuthContextState>({
 	user: null,
 	error: '',
@@ -39,8 +39,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 		[user, isLoading, error]
 	);
 
-
-useEffect(
+	useEffect(
 		() =>
 			onAuthStateChanged(auth, user => {
 				if (user) {
@@ -56,7 +55,7 @@ useEffect(
 		[]
 	);
 
+	return <AuthContext.Provider value={value}>{!initialLoader ? children : null}</AuthContext.Provider>;
+};
 
-return <AuthContext.Provider value={value}>{!initialLoader ? children : null}</AuthContext.Provider>;
-}
 export default AuthContextProvider;
