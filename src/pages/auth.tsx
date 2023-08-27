@@ -15,11 +15,11 @@ const Auth = () => {
 
 	const [auth, setAuth] = useState<'signup' | 'signin'>('signin');
 
-	const{error, IsLoading, signIn, signUp, user, setIsLoading} = useAuth();
+	const{error, isLoading, signIn, signUp, user, setIsLoading} = useAuth();
 	// const router = useRouter();
 
 
-	if(IsLoading) return
+	if(isLoading) return
 	<>Loading....</>;
 	// if(user) router.push('/');
 
@@ -69,8 +69,8 @@ const Auth = () => {
 						<TextField name='password' placeholder='Password' type={'password'} />
 					</div>
 
-					<button type='submit' disabled={IsLoading} className='w-full bg-[#E10856] py-3 mt-4 font-semibold'>
-						{IsLoading ? <Dna/> : auth === 'signin' ? 'Sign In' : 'Sign Up'}
+					<button type='submit' disabled={isLoading} className='w-full bg-[#E10856] py-3 mt-4 font-semibold'>
+						{isLoading ? <Dna/> : auth === 'signin' ? 'Sign In' : 'Sign Up'}
 					</button>
 
 					{auth === 'signin' ? (
@@ -84,7 +84,7 @@ const Auth = () => {
 						<div className='text-[gray]'>
 							Already have account?{' '}
 							<button type='button' className='text-white hover:underline' onClick={() => toggleAuth('signin')}>
-								{IsLoading ? <Dna /> : 'Sign In'}
+								{isLoading ? <Dna /> : 'Sign In'}
 							</button>
 						</div>
 					)}
