@@ -4,7 +4,7 @@
 /* * html body uchun  */
 @layer base {
       body {
-            @apply bg-[#141414] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-white !scrollbar;
+            @apply bg-[#010511] text-white !scrollbar-thin !scrollbar-track-transparent !scrollbar-thumb-white !scrollbar;
       }
       header {
             @apply fixed top-0 z-50 flex w-full items-center justify-between px-4  transition-all lg:px-10;
@@ -15,13 +15,8 @@
       }
 }
 /* Custom className */
-@layer components {
-      .navLink{
-            @apply cursor-pointer text-base  text-[#fff] hover:text-[#b3b3b3] font-medium tracking-wide;
-            text-shadow: 0 2px black;
-            letter-spacing: 2px;
-            font-weight: bold;
-      }
+
+
 
       .modalButton{
             @apply flex h-10 w-10 items-center justify-center rounded-full border-2 border-[gray] bg-[#2a2a2a]/60 transition-all hover:border-white hover:bg-white/10 ;
@@ -32,7 +27,13 @@
       .buyButton{
             @apply text-white
       }
-}
+
+
+
+      	.menu .MuiList-root {
+      	      @apply !p-0;
+      	}
+
 h1{
 text-shadow: 0 2px black;
 }

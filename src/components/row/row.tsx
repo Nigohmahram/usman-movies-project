@@ -24,8 +24,8 @@ const Row = ({title, movies, isBig = false}: RowProps) => {
 		}
 	}
 
-	return (<div className='h-[400px] space-y-1 md:space-y-2 mt-[-30px]'>
-		<h2 className='w-56 cursor-pointer text-sm md:text-2xl font-bold tracking-[1px] text-white hover:text-[#c3bbbb] transition duration-200'>{title}</h2>
+	return (<div className='md:h-[400px] space-y-3 md:space-y-2 mt-[-30px]'>
+		<h2 className='w-56 cursor-pointer text-lg mt-4 md:text-2xl font-bold tracking-[1px] text-white hover:text-[#c3bbbb] transition duration-200'>{title}</h2>
 		{/* Carousel */}
 		<div className='group relative md:ml-2'>
 			<BsFillCaretLeftFill className='absolute top-0 bottom-0 left-2 z-40 m-auto h-8 w-8 cursor-pointer opacity-0 group-hover:opacity-100 transition duration-200 hover:scale-125'
