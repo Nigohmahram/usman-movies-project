@@ -63,7 +63,3 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 </tr>
 </tbody>
 </table>
-
-
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=nigohmahram&show_icons=true&locale=en&layout=compact" alt="nigohmahram" /></p>
-
