@@ -23,16 +23,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     </a>
     <a href="https://sass-lang.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="sass" width="40" height="40"/>
     </a>
-    <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://i.morioh.com/200624/01946ae2.jpg" alt="bootstrap" width="40" height="40"/>
-    </a>
-    <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://img.stackshare.io/service/11559/zustand.png" alt="react" width="40" height="40"/>
-    </a>
-    <a href="https://vuejs.org/" target="_blank" rel="noreferrer"> <img src="https://logos-world.net/wp-content/uploads/2021/03/Stripe-Symbol.png" alt="vuejs" width="40" height="40"/>
-    </a>
-    <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://link-value.fr/wp-content/uploads/2021/06/Firebase.png" alt="tailwind" width="40" height="40"/>
-    </a>
-    <a href="https://pugjs.org" target="_blank" rel="noreferrer"> <img src="https://blog.logrocket.com/wp-content/uploads/2021/04/multistep-wizard-forms-formik-react-query.png" alt="pug" width="40" height="40"/>
-    </a>
+
     <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://teletype.in/files/17/fe/17fe02c4-1d13-48c7-ac4d-4e4c133a6def.png" alt="git" width="40" height="40"/>
     </a>
     <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://marmelab.com/react-admin/assets/techs/material-ui.png" alt="figma" width="40" height="40"/>
@@ -41,6 +32,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     </a>
     <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://media.zeemly.com/zeemly/product/tailwind-css.png" alt="photoshop" width="40" height="40"/>
     </a>
+
   </p>
 
 ##Latest projects
