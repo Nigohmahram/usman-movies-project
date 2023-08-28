@@ -32,21 +32,3 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   <h3 align="left">
   Project Site: https://usman-movies-project.vercel.app/auth
   </h3>
-
-##Latest projects
-
-  <table>
-<thead>
-<tr>
-<th>Preview</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2f0f7baa1627181caa656bf6fa631479e1c3880af09e176caa2eb7bb493f5ca0/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f647a32303973366a6b2f696d6167652f75706c6f61642f715f6175746f2c775f3730302f4368616c6c656e6765732f66687a70646e616272656b353068766866746e6c2e6a7067"><img src="https://camo.githubusercontent.com/2f0f7baa1627181caa656bf6fa631479e1c3880af09e176caa2eb7bb493f5ca0/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f647a32303973366a6b2f696d6167652f75706c6f61642f715f6175746f2c775f3730302f4368616c6c656e6765732f66687a70646e616272656b353068766866746e6c2e6a7067" alt="Movie product page preview" width="250" data-canonical-src="https://i.ibb.co/y6tC826/1.png" style="max-width: 100%;"></a><br><a href="https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6" rel="nofollow">Project source</a></td>
-<td><strong>Easybank landing page</strong> <br>Movie application promo page for online movies <br><br> <a href="https://i.ibb.co/5cQXmSk/2.png"><g-emoji class="g-emoji" alias="receipt" fallback-src="https://i.ibb.co/5cQXmSk/2.png">🧾</g-emoji> Repo</a> - <a href="https://mjb-easybank.netlify.app/" rel="nofollow"><g-emoji class="g-emoji" alias="globe_with_meridians" fallback-src="https://i.ibb.co/6DdzY7t/image.png">🌐</g-emoji> Netlify</a> - <g-emoji class="g-emoji" alias="watch" fallback-src="https://i.ibb.co/TgRVvRq/3.png">⌚</g-emoji> 2 hours<br><br> <strong>Specific aspects:</strong> Placement of images in the Hero section</td>
-</tr>
-
-</tbody>
-</table>
