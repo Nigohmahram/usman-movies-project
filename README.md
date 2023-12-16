@@ -1,6 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
+https://usman-movies-project.vercel.app/auth
 
 <h3 align="center">Frontend developer</h3>
 <h4 align="left"> Full stack app with subscription plan. The customer can log in and register on the app, but without a checkout plan, they cannot take full advantage of our platform. We have used every protected page. After registration, the user must buy one plan out of three. We have integrated payment with stripe. Firebase to authenticate and save some user data. The customer can also change or cancel the subscription and manage payment details.... </h4>
@@ -29,6 +30,3 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     </a>
 
   </p>
-  <h3 align="left">
-  Project Site: https://usman-movies-project.vercel.app/auth
-  </h3>
